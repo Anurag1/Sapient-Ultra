@@ -1,0 +1,23 @@
+# Python Artifacts
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+
+# Gradio cache & logs
+gradio_cached_examples/
+.gradio_cache
+*.log
+
+# IDE & Editor Configuration
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+
+# HONet data and outputs
+data/
+live_output/
+strong_evidence_output/
