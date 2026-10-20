@@ -1,0 +1,8 @@
+{
+  "_instructions": "Copy this file to qrels.json after generating a live corpus. Replace example IDs with exact IDs from that corpus and label each query independently. 0 = not relevant, 1 = partially relevant, 2 = highly relevant. Do not use this template itself as evidence of performance.",
+  "queries": {
+    "example query": {
+      "replace-with-exact-document-id-from-live-corpus": 2
+    }
+  }
+}
