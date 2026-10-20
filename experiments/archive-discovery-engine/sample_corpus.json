@@ -1,0 +1,37 @@
+[
+  {
+    "id": "demo-001",
+    "title": "Ada Lovelace and the Analytical Engine",
+    "text": "Ada Lovelace wrote notes on Charles Babbage's Analytical Engine. Her notes described how a machine might manipulate symbols and included a method for calculating Bernoulli numbers.",
+    "source_url": "https://archive.org/search?query=Ada+Lovelace+Analytical+Engine",
+    "entities": ["Ada Lovelace", "Charles Babbage", "Analytical Engine", "Bernoulli numbers", "mathematics", "computing"]
+  },
+  {
+    "id": "demo-002",
+    "title": "Charles Babbage's Mechanical Computing Designs",
+    "text": "Charles Babbage designed the Difference Engine and Analytical Engine. The Analytical Engine used a store and a mill, concepts often compared with memory and a processor in later computing explanations.",
+    "source_url": "https://archive.org/search?query=Charles+Babbage+Analytical+Engine",
+    "entities": ["Charles Babbage", "Analytical Engine", "Difference Engine", "computing", "memory", "processor"]
+  },
+  {
+    "id": "demo-003",
+    "title": "History of Mathematical Tables",
+    "text": "Mathematical tables supported navigation, astronomy, and engineering before electronic computers. Repeated calculations motivated efforts to mechanize arithmetic and reduce transcription errors.",
+    "source_url": "https://archive.org/search?query=history+mathematical+tables",
+    "entities": ["mathematics", "astronomy", "engineering", "mechanical calculation"]
+  },
+  {
+    "id": "demo-004",
+    "title": "Early Programming Concepts",
+    "text": "Early descriptions of programmable machines explored sequences of operations, stored values, and symbolic instructions. These ideas later became central to computer programming and software design.",
+    "source_url": "https://archive.org/search?query=early+programming+concepts",
+    "entities": ["programming", "symbolic instructions", "computing", "software design"]
+  },
+  {
+    "id": "demo-005",
+    "title": "Astronomy and Observation in the Nineteenth Century",
+    "text": "Astronomers used observations and mathematical calculations to create tables, compare predictions with measurements, and document uncertainty in scientific results.",
+    "source_url": "https://archive.org/search?query=nineteenth+century+astronomy",
+    "entities": ["astronomy", "mathematics", "observations", "scientific uncertainty"]
+  }
+]
