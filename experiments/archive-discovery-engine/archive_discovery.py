@@ -71,6 +71,11 @@ def _result(doc: dict[str, Any], score: float, method: str, reasons: list[str]) 
         "evidence": doc["text"],
         "entities": doc["entities"],
         "why": reasons,
+        # Optional source-provenance fields are passed through unchanged.
+        **{key: doc[key] for key in (
+            "item_identifier", "source_file_url", "passage_locator", "locator_type",
+            "creator", "subjects", "date", "rights",
+        ) if key in doc},
     }
 
 

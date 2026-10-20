@@ -43,3 +43,51 @@ Respect each item's rights, access conditions, and Internet Archive policies. Pr
 ## Relationship to BookReader
 
 This is intentionally a standalone research prototype, not a patch to `internetarchive/bookreader`. A future integration should follow BookReader's contribution process and preserve accessibility and compatibility requirements.
+
+
+## Milestone 2: live Internet Archive ingestion
+
+The new `live_archive.py` module performs **read-only** retrieval from public Internet Archive endpoints:
+
+- Advanced Search API for item identifiers and descriptive metadata.
+- Item Metadata API for the canonical item metadata and file list.
+- Public OCR/plain-text files when present and within the configured size limit.
+- Passage records preserve the item identifier, item URL, source file URL, OCR locator, creator/subjects, date, and rights metadata when supplied.
+
+The ingestion intentionally does not write to Archive.org, bypass access restrictions, or download arbitrary binary files. It caps each search to 25 items and each OCR file to 3 MB. Items without a suitable public text file are skipped. OCR text can contain errors.
+
+### Run a live ingest
+
+From this directory, with Python 3.10+ and an internet connection:
+
+```bash
+python live_archive.py --query 'title:mathematics AND mediatype:texts' --rows 5 --out live_archive_corpus.json
+```
+
+The query syntax is the Internet Archive Advanced Search query language. Start with a small `--rows` value. The program prints counts and failures and writes the corpus JSON locally.
+
+Passages split on explicit form-feed characters are labelled `text-page-N`; other passages are labelled `text-segment-N`. **Text segment numbers are not physical page numbers.** Verify any citation in the original item before using it in research or publication.
+
+### Retrieval evaluation
+
+`evaluate_retrieval.py` compares keyword and graph-assisted rankings using Precision@k, Recall@k, and nDCG@k. It requires explicit relevance labels and fails if labels refer to IDs absent from the corpus.
+
+1. Run a live ingest.
+2. Inspect the corpus and verify the item/file provenance.
+3. Copy `qrels.template.json` to `qrels.json`.
+4. Add several representative queries and human-judged relevance grades for exact passage IDs (0 = irrelevant, 1 = partly relevant, 2 = highly relevant).
+5. Run:
+
+```bash
+python evaluate_retrieval.py --corpus live_archive_corpus.json --qrels qrels.json --k 5 --out retrieval_evaluation.json
+```
+
+Do not treat the placeholder template as evaluation data. Do not claim an improvement from a tiny or unrepresentative set of queries. Report query count, relevance-labeling method, skipped items, provenance errors, and both methods' metrics.
+
+### Validation
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The tests cover the new parsing, source provenance, safety limits, and metric calculations. Network-dependent live ingestion should be run separately because availability and OCR coverage vary by item.
